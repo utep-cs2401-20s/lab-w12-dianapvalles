@@ -8,18 +8,16 @@ class myBinarySearchTreeNode{
     myValue = inValue;
     left = null;
     right = null;
-
   }
   
   myBinarySearchTreeNode(int[] A){
     // creates a new Binary Search Tree rooted at the first value in the array
     /// by inserting elements into the tree in the order they are given in A.
-    myBinarySearchTreeNode tree = new myBinarySearchTreeNode(A[0]);
+    myValue = A[0];
 
-    for(int i = 0; i < A.length; i++){
-      tree.insert(A[i]);
+    for(int i = 1; i < A.length; i++){
+      this.insert(A[i]);
     }
-
   }
   
   public void insert(int inValue){
@@ -48,9 +46,8 @@ class myBinarySearchTreeNode{
     }
     if(inValue == this.myValue){
       // do not insert duplicates
-      System.out.println("ERROR: duplicated value");
+      System.out.println("ERROR: duplicated value"); //Error message
     }
-
   }
   
   public int height(){
@@ -61,13 +58,13 @@ class myBinarySearchTreeNode{
     int rightH = 0;
 
     if(left != null){
-      leftH = left.height();
+      leftH = left.height() + 1;
     }
     if(right != null){
-      rightH = right.height();
+      rightH = right.height() + 1;
     }
 
-    return (leftH > rightH) ? (leftH + 1) : (rightH + 1);
+    return (leftH > rightH) ? (leftH) : (rightH);
   }
   
   public int depth(int search){
@@ -77,11 +74,18 @@ class myBinarySearchTreeNode{
      // Additionally, remember that the depth is the number of nodes on the path from a node to the root 
      // (i.e. the number of the recursive calls).
 
-    if(search < myValue)
-      return 1 + left.depth(search);
+    if (search < myValue) {
+      if (left != null) {
+        return 1 + left.depth(search);
+      }
+    }
 
-    if(search > myValue)
-      return 1 + right.depth(search);
+    if (search > myValue) {
+      if (right != null) {
+        return 1 + right.depth(search);
+      }
+      return -1;
+    }
 
     if(search == myValue)
       return 0;
