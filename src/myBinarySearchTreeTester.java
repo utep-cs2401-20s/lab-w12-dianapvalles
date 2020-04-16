@@ -85,7 +85,7 @@ public class myBinarySearchTreeTester {
     }
 
     /*
-     * The purpose of this test is to check the correct implementation of 
+     * The purpose of this test is to check  
      * This method checks if
      * If it fails,
      * The root is assigned with
